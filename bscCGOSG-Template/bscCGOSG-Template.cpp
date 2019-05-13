@@ -30,6 +30,7 @@
 #include "raaTrafficLightUnit.h"
 #include "raaJunctionController.h"
 #include "raaInputController.h"
+#include <osgDB/ReadFile>
 
 
 //#include <osgDB/ReadFile>
@@ -100,6 +101,9 @@ int main(int argc, char** argv)
 	raaJunctionController::addVehicle(g_pAnim);
 
 
+
+
+
 	//**Adding car2 to scene**//
 	osg::AnimationPath *pAnimationPath = new osg::AnimationPath();
 	raaAnimationPathBuilder apBuilder2(pAnimationPath, g_pRoot);
@@ -112,6 +116,18 @@ int main(int argc, char** argv)
 
 	//Add the vehcile to the junction controller for traffic light control
 	raaJunctionController::addVehicle(g_pAnim2);
+
+
+	//add figure
+
+	osg::Node* fountain = osgDB::readNodeFile("../../Data/fountain.osgt");
+	osg::MatrixTransform* matrix = new osg::MatrixTransform(osg::Matrix::translate(700.0f, 700.0f, 2.0f));	matrix->addChild(fountain);
+	g_pRoot->addChild(matrix);
+
+
+	osg::Node* iz = osgDB::readNodeFile("../../Data/lz.osgt");
+	osg::MatrixTransform* matrix2 = new osg::MatrixTransform(osg::Matrix::translate(0.0f, 0.0f, 2.0f));	matrix2->addChild(iz);
+	g_pRoot->addChild(matrix2);
 
 	//Setup stuff
 	osg::GraphicsContext::Traits *pTraits = new osg::GraphicsContext::Traits();

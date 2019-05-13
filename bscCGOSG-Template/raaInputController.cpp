@@ -14,6 +14,9 @@ bool raaInputController::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActi
 			case 'A':
 				raaTile::toggleAnimPoints();
 				return true;
+			case '+':
+				raaTile::toggleAnimPoints();
+				return true;
 		}
 	}
 
